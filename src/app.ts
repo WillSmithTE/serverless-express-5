@@ -1,8 +1,8 @@
+import { getCurrentInvoke } from "@codegenie/serverless-express";
+import compression from "compression";
 import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
-import compression from "compression";
-import { getCurrentInvoke } from "@codegenie/serverless-express";
 
 const ejs = require("ejs").__express;
 const app = express();
@@ -28,6 +28,10 @@ router.get("/", (req: Request, res: Response) => {
   return res.render("index", {
     apiUrl,
   });
+});
+
+router.get("/test", (req: Request, res: Response) => {
+  return res.json({ message: `Test var is ${process.env["TEST_VAR"]}` });
 });
 
 router.get("/code-genie-logo", (req: Request, res: Response) => {
